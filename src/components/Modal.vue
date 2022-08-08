@@ -25,26 +25,28 @@
     backdrop-filter: blur(5px);
     z-index: 2;
     visibility: hidden;
+    transition: background-color $trans-default;
     &.visible {
         visibility: visible;
     }
-    &.dark {
-        background-color: rgba(0, 0, 0, 0.6);
-    }
     &.light {
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: $c-white-semi-trans;
+    }
+    &.dark {
+        background-color: $c-cod-grey-semi-trans;
     }
     &__container {
         width: calc(100% - 40px);
         max-width: 600px;
-        padding: 20px;
+        padding: $gtr;
         z-index: 1;
-        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
-        .modal.dark & {
-            background-color: rgb(0, 0, 0);
+        box-shadow: $box-shadow;
+        transition: background-color $trans-default;
+        .light & {
+            background-color: $c-white;
         }
-        .modal.light & {
-            background-color: rgb(255, 255, 255);
+        .dark & {
+            background-color: $c-cod-grey;
         }
     }
 }

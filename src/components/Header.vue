@@ -1,11 +1,12 @@
 <template>
     <header class="header" :class="theme">
-        <img class="header__logo" alt="Vue logo" src="../assets/logo.png">
-        <h1 class="header__title">{{title}}</h1>
+        <div class="header__container">
+            <h1 class="header__title">{{title}}</h1>
 
-        <div class="header__toggle" @click="changeTheme">
-          <div class="header__toggle-knob"></div>
-          <div class="header__toggle-layer"></div>
+            <div class="header__toggle" @click="changeTheme">
+                <div class="header__toggle-knob"></div>
+                <div class="header__toggle-layer"></div>
+            </div>
         </div>
 
     </header>
@@ -29,20 +30,20 @@
     top: 0;
     right: 0;
     width: 100%;
-    padding: 5px 20px;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    box-shadow: $box-shadow;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &.dark {
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+    transition: background-color $trans-default;
     &.light {
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: $c-white-semi-trans;
     }
-    &__logo {
-        width: 60px;
+    &.dark {
+        background-color: $c-cod-grey-semi-trans;
+    }
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     &__title {
         margin: 0;
@@ -68,11 +69,12 @@
             transition: 0.3s ease background-color;
             z-index: 1;
             border-radius: 100px;
-            .dark & {
-                background-color: #ebf7fc;
-            }
+            transition: background-color $trans-default;
             .light & {
-                background-color: #fcebeb;
+                background-color: $c-dodger-blue-semi-trans;
+            }
+            .dark & {
+                background-color: $c-ocean-green-semi-trans;
             }
         }
         &-knob {
@@ -81,25 +83,21 @@
             height: 100%;
             z-index: 2;
             &:before {
-                content: "Dark";
                 position: absolute;
                 top: 4px;
-                left: 4px;
-                width: 20px;
-                height: 10px;
-                color: #fff;
-                font-size: 10px;
-                font-weight: bold;
-                text-align: center;
-                line-height: 1;
-                padding: 9px 4px;
-                background-color: #03a9f4;
+                left: 6px;
+                width: 28px;
+                height: 28px;
                 border-radius: 50%;
-                transition: 0.3s ease background-color, 0.3s ease left;
+                transition: transform $trans-default, background-color $trans-default;
                 .light & {
-                  content: "Light";
-                  left: 42px;
-                  background-color: #f44336;
+                    content: '';
+                    background-color: $c-dodger-blue;
+                }
+                .dark & {
+                  content: '';
+                  transform: translateX(34px);
+                  background-color: $c-ocean-green;
                 }
             }
         }
