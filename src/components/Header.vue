@@ -35,10 +35,10 @@
     z-index: 1;
     transition: background-color $trans-default;
     &.light {
-        background-color: $c-white-semi-trans;
+        background-color: $c-white;
     }
     &.dark {
-        background-color: $c-cod-grey-semi-trans;
+        background-color: $c-cod-grey;
     }
     &__container {
         display: flex;

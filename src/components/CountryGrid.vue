@@ -1,9 +1,11 @@
 <template>
     <main class="country-grid" :class="theme">
         <div class="country-grid__container">
-            <div class="country-grid__item">
-                <h3>Hello World</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, modi in sapiente dolores aut sed incidunt necessitatibus? Animi recusandae, necessitatibus non qui minima itaque dignissimos voluptatem iure, atque culpa nobis.</p>
+            <div class="country-grid__item" v-for="country of countries" :key="country.id">
+                <div class="country-grid__item-img-wrapper">
+                    <img :src="country.flags.svg" :alt="country.name.common" class="country-grid__item-img">
+                </div>
+                <h3 class="country-grid__item-title">{{country.name.common}}</h3>
             </div>
         </div>
     </main>
@@ -11,7 +13,7 @@
 
 <script>
     export default {
-        props: ['theme']
+        props: ['theme', 'countries']
     }
 </script>
 
@@ -29,7 +31,7 @@
     &__container {
         display: flex;
         flex-wrap: wrap;
-        gap: $gtr;
+        gap: $gtr-dbl $gtr;
     }
     &__item {
         width: calc((100% - 20px) / 2);
@@ -38,6 +40,26 @@
         }
         @media (min-width: 992px) {
             width: calc((100% - 100px) / 6);
+        }
+        &-img-wrapper {
+            width: 100%;
+            position: relative;
+            padding: $ratio-16-x-9;
+            margin: 0 0 $gtr-hlf;
+        }
+        &-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &-title {
+            margin: 0   ;
         }
     }
 }

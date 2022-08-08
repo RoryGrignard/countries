@@ -1,28 +1,52 @@
 <template>
   <Header :theme="theme" :title="title" @change="toggleTheme" />
-  <CountryGrid :theme="theme" />
+  <CountryGrid :theme="theme" :countries="countries" />
   <Modal :theme="theme" />
 </template>
 
 <script>
+import axios from 'axios'
 import Header from './components/Header.vue'
 import CountryGrid from './components/CountryGrid.vue'
 import Modal from './components/Modal.vue'
+
+console.log(axios)
 
 export default {
   name: 'App',
   components: {Header, CountryGrid, Modal},
   data() {
     return {
-      title: 'Countries Explorer',
-      theme: 'light'
+      title: 'Countries',
+      theme: 'light',
+      loading: true,
+      errored: false,
+      countries: null,
+      country: {},
+      showCountry: false
     }
   },
   methods: {
     toggleTheme() {
       this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light'
-      console.log(this.theme)
+    },
+    fetchCountries() {
+      const url = 'https://restcountries.com/v3.1/all'
+      axios
+      .get(url)
+      .then(response => {
+        console.log(response)
+        this.countries = response.data
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
     }
+  },
+  mounted() {
+    this.fetchCountries()
   }
 }
 </script>
