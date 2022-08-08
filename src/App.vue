@@ -1,5 +1,5 @@
 <template>
-  <Header :theme="theme" :title="title" />
+  <Header :theme="theme" :title="title" @change="toggleTheme" />
   <CountryGrid :theme="theme" />
   <Modal :theme="theme" />
 </template>
@@ -15,7 +15,13 @@ export default {
   data() {
     return {
       title: 'Countries',
-      theme: 'dark'
+      theme: 'light'
+    }
+  },
+  methods: {
+    toggleTheme() {
+      this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light'
+      console.log(this.theme)
     }
   }
 }
