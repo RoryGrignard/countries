@@ -1,15 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <h1>{{title}}</h1>
+  <Header :theme="theme" :title="title" />
+  <CountryGrid :theme="theme" />
+  <Modal :theme="theme" />
 </template>
 
 <script>
+import Header from './components/Header.vue'
+import CountryGrid from './components/CountryGrid.vue'
+import Modal from './components/Modal.vue'
 
 export default {
   name: 'App',
+  components: {Header, CountryGrid, Modal},
   data() {
     return {
-      title: 'Hello Vue'
+      title: 'Countries',
+      theme: 'dark'
     }
   }
 }
@@ -18,10 +24,21 @@ export default {
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#app * {
+  box-sizing: border-box;
+}
+
+.dark * {
+  color: #fff;
+}
+
+body {
+  margin: 0;
 }
 </style>
