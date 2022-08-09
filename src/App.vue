@@ -1,7 +1,7 @@
 <template>
-  <Header :theme="theme" :title="title" @change="toggleTheme" />
-  <CountryGrid :theme="theme" :countries="countries" />
-  <Modal :theme="theme" />
+  <Header :theme="theme" :title="title" @toggle-theme="toggleTheme" />
+  <CountryGrid :theme="theme" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
+  <Modal :theme="theme" :country="country" :modal-active="modalActive" @hide-modal="hideModal" />
 </template>
 
 <script>
@@ -23,10 +23,19 @@ export default {
       errored: false,
       countries: null,
       country: {},
-      showCountry: false
+      modalActive: false
     }
   },
   methods: {
+    showModal(countryCCN3) {
+      let selectedCountry = this.countries.filter(country => country.ccn3 == countryCCN3)
+      this.country = selectedCountry
+      this.modalActive = true
+    },
+    hideModal() {
+      this.modalActive = false
+      this.country = {}
+    },
     toggleTheme() {
       this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light'
     },
@@ -35,7 +44,6 @@ export default {
       axios
       .get(url)
       .then(response => {
-        console.log(response)
         this.countries = response.data
       })
       .catch(error => {
@@ -67,7 +75,7 @@ body {
   margin: 0;
 }
 
-*[class*="__container"] {
+*[class*="__container"]:not(.modal__container) {
   width: 100%;
   max-width: 1400px;
   padding: 0 $gtr;
@@ -83,12 +91,13 @@ body {
   h5,
   h6,
   p,
+  li,
   label,
   input,
   textarea,
   select,
   button {
-    transition: color $trans-default;
+    transition: color $tr-default;
   }
 
   h1,
@@ -111,12 +120,33 @@ body {
   }
 
   p,
+  li,
   label,
   input,
   textarea,
   select,
   button {
     font-family: 'Roboto', sans-serif;
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  button {
+    outline: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: $gtr-hlf $gtr;
+    border-radius: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 $gtr;
+    transition: color $tr-default, background-color $tr-default;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
 // Theme styles
@@ -127,8 +157,17 @@ body {
   h4,
   h5,
   h6,
-  p {
+  p,
+  li {
     color: $c-cod-grey;
+  }
+  button {
+    color: $c-dodger-blue;
+    border-color: $c-dodger-blue;
+    line-height: 1;
+    &:hover {
+      background-color: $c-dodger-blue-tr-2;
+    }
   }
 }
 
@@ -139,8 +178,16 @@ body {
   h4,
   h5,
   h6,
-  p {
+  p,
+  li {
     color: $c-white;
+  }
+  button {
+    color: $c-ocean-green;
+    border-color: $c-ocean-green;
+    &:hover {
+      background-color: $c-ocean-green-tr-2;
+    }
   }
 }
 

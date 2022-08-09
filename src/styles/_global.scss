@@ -3,25 +3,27 @@
 
 // Colors
 $c-cod-grey: #1a1a1a;
-$c-cod-grey-semi-trans: rgba(26, 26, 26, 0.6);
+$c-cod-grey-tr-8: rgba(26, 26, 26, 0.8);
 $c-pickled-bluewood: #35495e;
 $c-ocean-green: #43b883;
-$c-ocean-green-semi-trans: rgba(67, 184, 131, 0.6);
+$c-ocean-green-tr-6: rgba(67, 184, 131, 0.6);
+$c-ocean-green-tr-2: rgba(67, 184, 131, 0.2);
 $c-white: #fff;
-$c-white-semi-trans: rgba(255, 255, 255, 0.6);
+$c-white-tr-8: rgba(255, 255, 255, 0.8);
 $c-rose: #fd1d7c;
 $c-dodger-blue: #5468ff;
-$c-dodger-blue-semi-trans: rgba(84, 104, 255, 0.6);
+$c-dodger-blue-tr-6: rgba(84, 104, 255, 0.6);
+$c-dodger-blue-tr-2: rgba(84, 104, 255, 0.2);
 
 //Layout
-$header-height: 53px;
+$header-height: 50px;
 $header-height-bdl: $header-height * 2;
 
 // Transitions
-$trans-default: .5s ease;
+$tr-default: .3s ease;
 
 //Ratios
-$ratio-16-x-9: 56.3% 0 0;
+$rat-16-9: 56.3% 0 0;
 
 // Utilities
 $box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);

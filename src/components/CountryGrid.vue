@@ -1,9 +1,9 @@
 <template>
     <main class="country-grid" :class="theme">
         <div class="country-grid__container">
-            <div class="country-grid__item" v-for="country of countries" :key="country.id">
+            <div class="country-grid__item" v-for="country of countries" :key="country.ccn3" @click="emitShowModal(country.ccn3)">
                 <div class="country-grid__item-img-wrapper">
-                    <img :src="country.flags.svg" :alt="country.name.common" class="country-grid__item-img">
+                    <img class="country-grid__item-img" :src="country.flags.svg" :alt="country.name.common + ' flag'">
                 </div>
                 <h3 class="country-grid__item-title">{{country.name.common}}</h3>
             </div>
@@ -13,7 +13,12 @@
 
 <script>
     export default {
-        props: ['theme', 'countries']
+        props: ['theme', 'countries'],
+        methods: {
+            emitShowModal(countryCCN3) {
+                this.$emit('showModal', countryCCN3)
+            }
+        }
     }
 </script>
 
@@ -21,7 +26,7 @@
 .country-grid {
     flex: 1 0 auto;
     padding: $header-height-bdl 0;
-    transition: background-color $trans-default;
+    transition: background-color $tr-default;
     &.light {
         background-color: $c-white;
     }
@@ -35,6 +40,11 @@
     }
     &__item {
         width: calc((100% - 20px) / 2);
+        transition: opacity $tr-default;
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
         @media (min-width: 767px) {
             width: calc((100% - 60px) / 4);
         }
@@ -44,7 +54,7 @@
         &-img-wrapper {
             width: 100%;
             position: relative;
-            padding: $ratio-16-x-9;
+            padding: $rat-16-9;
             margin: 0 0 $gtr-hlf;
         }
         &-img {
