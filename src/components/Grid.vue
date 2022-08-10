@@ -1,11 +1,11 @@
 <template>
-    <main class="country-grid" :class="theme">
-        <div class="country-grid__container">
-            <div class="country-grid__item" v-for="country of countries" :key="country.ccn3" @click="emitShowModal(country.ccn3)">
-                <div class="country-grid__item-img-wrapper">
-                    <img class="country-grid__item-img" :src="country.flags.svg" :alt="country.name.common + ' flag'">
+    <main class="grid" :class="theme">
+        <div class="grid__container">
+            <div class="grid__item" v-for="country of countries" :key="country.ccn3" @click="emitShowModal(country.ccn3)">
+                <div class="grid__item-img-wrapper">
+                    <img class="grid__item-img" :src="country.flags.svg" :alt="country.name.common + ' flag'">
                 </div>
-                <h3 class="country-grid__item-title">{{country.name.common}}</h3>
+                <h3 class="grid__item-title">{{country.name.common}}</h3>
             </div>
         </div>
     </main>
@@ -23,9 +23,9 @@
 </script>
 
 <style lang="scss">
-.country-grid {
+.grid {
     flex: 1 0 auto;
-    padding: $header-height-bdl 0;
+    padding: $header-height 0;
     transition: background-color $tr-default;
     &.light {
         background-color: $c-white;
@@ -45,7 +45,7 @@
             cursor: pointer;
             opacity: 0.7;
         }
-        @media (min-width: 767px) {
+        @media (min-width: 768px) {
             width: calc((100% - 60px) / 4);
         }
         @media (min-width: 992px) {

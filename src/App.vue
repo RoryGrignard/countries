@@ -1,20 +1,22 @@
 <template>
   <Header :theme="theme" :title="title" @toggle-theme="toggleTheme" />
-  <CountryGrid :theme="theme" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
+  <Filter :theme="theme" @filter-region="region => filterRegion(region)" @search-query="searchQuery => searchCountry(searchQuery)" />
+  <Grid :theme="theme" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
   <Modal :theme="theme" :country="country" :modal-active="modalActive" @hide-modal="hideModal" />
 </template>
 
 <script>
 import axios from 'axios'
 import Header from './components/Header.vue'
-import CountryGrid from './components/CountryGrid.vue'
+import Filter from './components/Filter.vue'
+import Grid from './components/Grid.vue'
 import Modal from './components/Modal.vue'
 
 console.log(axios)
 
 export default {
   name: 'App',
-  components: {Header, CountryGrid, Modal},
+  components: {Header, Filter, Grid, Modal},
   data() {
     return {
       title: 'Countries',
@@ -23,7 +25,10 @@ export default {
       errored: false,
       countries: null,
       country: {},
-      modalActive: false
+      modalActive: false,
+
+      search: null,
+      region: null,
     }
   },
   methods: {
@@ -39,8 +44,29 @@ export default {
     toggleTheme() {
       this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light'
     },
+    searchCountry(searchQuery) {
+      this.region = null
+      this.search = searchQuery
+      this.fetchCountries()
+      console.log('search: ' + this.search)
+      console.log('region: ' + this.region)
+    },
+    filterRegion(region) {
+      this.search = null
+      this.region = region
+      this.fetchCountries()
+      console.log('region: ' + this.region)
+      console.log('search: ' + this.search)
+    },
     fetchCountries() {
-      const url = 'https://restcountries.com/v3.1/all'
+      let url = 'https://restcountries.com/v3.1/'
+      if (this.search) {
+        url += 'name/' + this.search
+      } else if (this.region) {
+        url += 'region/' + this.region
+      } else {
+        url += 'all'
+      }
       axios
       .get(url)
       .then(response => {
