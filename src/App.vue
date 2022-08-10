@@ -47,21 +47,21 @@ export default {
       this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light'
     },
     resetFilters() {
-      this.countries = null
-      this.region = null
       this.search = null
+      this.region = null
+      this.countries = null
       this.fetchCountries()
     },
     searchCountry(searchQuery) {
-      this.countries = null
-      this.region = null
       this.search = searchQuery
+      this.region = null
+      this.countries = null
       this.fetchCountries()
     },
     filterRegion(region) {
-      this.countries = null
       this.search = null
       this.region = region
+      this.countries = null
       this.fetchCountries()
     },
     fetchCountries() {
