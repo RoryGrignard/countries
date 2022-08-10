@@ -53,18 +53,25 @@
 
 <style lang="scss">
 .filter {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    box-shadow: $box-shadow-light;
+    z-index: 2;
     padding: $gtr-hlf 0;
     margin: 50px 0 0;
-    transition: background-color $tr-default;
-    box-shadow: $box-shadow;
+    transition: background-color $tr-default, box-shadow $tr-default;
     @media (min-width: 768px) {
         padding: 7px 0;
     }
     &.light {
         background-color: $c-dodger-blue;
+        box-shadow: $box-shadow-light;
     }
     &.dark {
         background-color: $c-ocean-green;
+        box-shadow: $box-shadow-dark;
     }
     &__container {
         display: flex;
@@ -86,6 +93,20 @@
     }
     &__label {
         font-family: 'Roboto Slab', serif;
+        transition: color $tr-default, border-color $tr-default;
+        &:hover {
+            cursor: pointer;
+            color: $c-white;
+            border-color: $c-white;
+        }
+       .dark & {
+            color: $c-pickled-bluewood;
+            border-color: $c-pickled-bluewood;
+            &:hover {
+            color: $c-white;
+            border-color: $c-white;
+        }
+        }
     }
     &__input,
     &__select {
@@ -99,17 +120,21 @@
     &__reset-btn {
         margin:  0 0 0 auto;
         .light & {
-            color: $c-white;
-            border-color: $c-white;
-            &:hover {
-                background-color: $c-white-tr-2;
+            color: $c-cod-grey;
+            border-color: $c-cod-grey;
+            &:hover,
+            &:focus {
+                color: $c-white;
+                border-color: $c-white;
             }
         }
         .dark & {
-            color: $c-cod-grey;
-            border-color: $c-cod-grey;
-            &:hover {
-                background-color: $c-cod-grey-tr-2;
+            color: $c-pickled-bluewood;
+            border-color: $c-pickled-bluewood;
+            &:hover,
+            &:focus {
+                color: $c-white;
+                border-color: $c-white;
             }
         }
     }

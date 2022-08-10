@@ -6,6 +6,7 @@ $c-cod-grey: #1a1a1a;
 $c-cod-grey-tr-8: rgba(26, 26, 26, 0.8);
 $c-cod-grey-tr-2: rgba(26, 26, 26, 0.2);
 $c-pickled-bluewood: #35495e;
+$c-pickled-bluewood-tr-6: rgba(53, 73, 94, 0.6);
 $c-ocean-green: #43b883;
 $c-ocean-green-tr-6: rgba(67, 184, 131, 0.6);
 $c-ocean-green-tr-2: rgba(67, 184, 131, 0.2);
@@ -19,6 +20,8 @@ $c-dodger-blue-tr-2: rgba(84, 104, 255, 0.2);
 
 //Layout
 $header-height: 50px;
+$header-height-dbl: $header-height * 2;
+$header-height-tpl: $header-height * 3;
 
 // Transitions
 $tr-default: .4s ease;
@@ -27,7 +30,8 @@ $tr-default: .4s ease;
 $rat-16-9: 56.3% 0 0;
 
 // Utilities
-$box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+$box-shadow-light: 0px 0px 10px 5px $c-cod-grey-tr-2;
+$box-shadow-dark: 0px 0px 10px 5px $c-pickled-bluewood-tr-6;
 $gtr: 20px;
 $gtr-hlf: $gtr / 2;
 $gtr-dbl: $gtr * 2;

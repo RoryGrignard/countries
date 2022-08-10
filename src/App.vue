@@ -170,15 +170,34 @@ button {
   outline: none;
   background-color: transparent;
   border: 2px solid transparent;
-  padding: $gtr-hlf $gtr;
+  padding: $gtr-hlf 18px;
   border-radius: 23px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0 $gtr;
+  line-height: 1;
   transition: color $tr-default, background-color $tr-default, border-color $tr-default;
   &:hover {
     cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+// Forms
+
+input,
+select {
+  &:focus-visible {
+    outline: none;
+    .light & {
+    box-shadow: $box-shadow-light;
+    }
+    .dark & {
+    box-shadow: $box-shadow-dark;
+    }
   }
 }
 
@@ -211,7 +230,6 @@ button {
   button {
     color: $c-dodger-blue;
     border-color: $c-dodger-blue;
-    line-height: 1;
     &:hover {
       background-color: $c-dodger-blue-tr-2;
     }

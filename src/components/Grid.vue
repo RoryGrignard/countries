@@ -28,7 +28,7 @@
 
 .grid {
     flex: 1 0 auto;
-    padding: $header-height 0;
+    padding: $header-height-tpl 0 $header-height-dbl;
     transition: background-color $tr-default;
     &.light {
         background-color: $c-white;

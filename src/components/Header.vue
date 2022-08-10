@@ -32,8 +32,8 @@
     width: 100%;
     height: 50px;
     padding: 5px 0;
-    box-shadow: $box-shadow;
-    z-index: 2;
+    box-shadow: $box-shadow-light;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;

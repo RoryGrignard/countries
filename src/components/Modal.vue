@@ -81,13 +81,14 @@ import { ref } from '@vue/reactivity'
         max-width: 691px;
         padding: $gtr-dbl;
         z-index: 1;
-        box-shadow: $box-shadow;
-        transition: background-color $tr-default;
+        transition: background-color $tr-default, box-shadow $tr-default;
         .light & {
             background-color: $c-white;
+            box-shadow: $box-shadow-light;
         }
         .dark & {
             background-color: $c-cod-grey;
+            box-shadow: $box-shadow-dark;
         }
     }
     &__head {
