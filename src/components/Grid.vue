@@ -2,7 +2,7 @@
     <main class="grid" :class="theme">
         <div class="grid__container">
             <TransitionGroup name="fade">
-                <div class="grid__item" v-for="country of countries" :key="country.ccn3" @click="emitShowModal(country.ccn3)">
+                <div class="grid__item" v-for="country of countries" :key="country.name.common" @click="emitShowModal(country.ccn3)">
                     <div class="grid__item-img-wrapper">
                         <img class="grid__item-img" :src="country.flags.svg" :alt="country.name.common + ' flag'">
                     </div>

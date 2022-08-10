@@ -16,6 +16,9 @@
                         <option value="oceania">Oceania</option>
                     </select>
                 </div>
+                <div class="filter__wrapper">
+                    <button class="filter__reset-btn" type="button" @click="emitResetFilters">Reset</button>
+                </div>
         </form>
     </div>
 </template>
@@ -38,6 +41,11 @@
                 this.selectedRegion = null
                 this.searchQuery = searchQuery
                 this.$emit('searchQuery', searchQuery)
+            },
+            emitResetFilters() {
+                this.searchQuery = null
+                this.selectedRegion = null
+                this.$emit('resetFilters')
             }
         }
     }
@@ -48,6 +56,7 @@
     padding: $gtr-hlf 0;
     margin: 50px 0 0;
     transition: background-color $tr-default;
+    box-shadow: $box-shadow;
     @media (min-width: 768px) {
         padding: 7px 0;
     }
@@ -72,7 +81,7 @@
         gap: 0 20px;
         width: 100%;
         @media (min-width: 768px) {
-            width: 50%;
+            width: calc(100% / 3);
         }
     }
     &__label {
@@ -85,6 +94,23 @@
         padding: $gtr-hlf $gtr;
         @media (min-width: 768px) {
             max-width: 200px;
+        }
+    }
+    &__reset-btn {
+        margin:  0 0 0 auto;
+        .light & {
+            color: $c-white;
+            border-color: $c-white;
+            &:hover {
+                background-color: $c-white-tr-2;
+            }
+        }
+        .dark & {
+            color: $c-cod-grey;
+            border-color: $c-cod-grey;
+            &:hover {
+                background-color: $c-cod-grey-tr-2;
+            }
         }
     }
 }

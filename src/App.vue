@@ -1,6 +1,6 @@
 <template>
   <Header :theme="theme" :title="title" @toggle-theme="toggleTheme" />
-  <Filter :theme="theme" @filter-region="region => filterRegion(region)" @search-query="searchQuery => searchCountry(searchQuery)" />
+  <Filter :theme="theme" @filter-region="region => filterRegion(region)" @search-query="searchQuery => searchCountry(searchQuery)" @reset-filters="resetFilters" />
   <Grid :theme="theme" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
   <Transition name="fade">
     <Modal :theme="theme" :country="country" v-if="modalActive" @hide-modal="hideModal" />
@@ -46,21 +46,26 @@ export default {
     toggleTheme() {
       this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light'
     },
+    resetFilters() {
+      this.countries = null
+      this.region = null
+      this.search = null
+      this.fetchCountries()
+    },
     searchCountry(searchQuery) {
+      this.countries = null
       this.region = null
       this.search = searchQuery
       this.fetchCountries()
-      console.log('search: ' + this.search)
-      console.log('region: ' + this.region)
     },
     filterRegion(region) {
+      this.countries = null
       this.search = null
       this.region = region
       this.fetchCountries()
-      console.log('region: ' + this.region)
-      console.log('search: ' + this.search)
     },
     fetchCountries() {
+      this.loading = true
       let url = 'https://restcountries.com/v3.1/'
       if (this.search) {
         url += 'name/' + this.search
@@ -171,7 +176,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 0 $gtr;
-  transition: color $tr-default, background-color $tr-default;
+  transition: color $tr-default, background-color $tr-default, border-color $tr-default;
   &:hover {
     cursor: pointer;
   }
