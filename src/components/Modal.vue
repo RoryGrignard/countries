@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" :class="theme" v-if="modalActive" @click.self="emitHideModal">
+    <div class="modal" :class="theme" @click.self="emitHideModal">
         <div class="modal__container" v-for="activeCountry in country" :key="activeCountry.ccn3">
             <div class="modal__head">
                 <div class="modal__img-wrapper">
@@ -46,8 +46,9 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
     export default {
-        props: ['theme', 'country', 'modalActive'],
+        props: ['theme', 'country'],
         methods: {
             emitHideModal() {
                 this.$emit('hideModal')

@@ -1,12 +1,14 @@
 <template>
     <main class="grid" :class="theme">
         <div class="grid__container">
-            <div class="grid__item" v-for="country of countries" :key="country.ccn3" @click="emitShowModal(country.ccn3)">
-                <div class="grid__item-img-wrapper">
-                    <img class="grid__item-img" :src="country.flags.svg" :alt="country.name.common + ' flag'">
+            <TransitionGroup name="fade">
+                <div class="grid__item" v-for="country of countries" :key="country.ccn3" @click="emitShowModal(country.ccn3)">
+                    <div class="grid__item-img-wrapper">
+                        <img class="grid__item-img" :src="country.flags.svg" :alt="country.name.common + ' flag'">
+                    </div>
+                    <h3 class="grid__item-title">{{country.name.common}}</h3>
                 </div>
-                <h3 class="grid__item-title">{{country.name.common}}</h3>
-            </div>
+            </TransitionGroup>
         </div>
     </main>
 </template>
@@ -23,6 +25,7 @@
 </script>
 
 <style lang="scss">
+
 .grid {
     flex: 1 0 auto;
     padding: $header-height 0;

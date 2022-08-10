@@ -2,7 +2,9 @@
   <Header :theme="theme" :title="title" @toggle-theme="toggleTheme" />
   <Filter :theme="theme" @filter-region="region => filterRegion(region)" @search-query="searchQuery => searchCountry(searchQuery)" />
   <Grid :theme="theme" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
-  <Modal :theme="theme" :country="country" :modal-active="modalActive" @hide-modal="hideModal" />
+  <Transition name="fade">
+    <Modal :theme="theme" :country="country" v-if="modalActive" @hide-modal="hideModal" />
+  </Transition>
 </template>
 
 <script>
@@ -110,70 +112,84 @@ body {
 
 // Typography
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  li,
-  label,
-  input,
-  textarea,
-  select,
-  button {
-    transition: color $tr-default;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+label,
+input,
+textarea,
+select,
+button {
+  transition: color $tr-default;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin-top: 0;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Roboto Slab', serif;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto Slab', serif;
+}
 
-  p,
-  li,
-  label,
-  input,
-  textarea,
-  select,
-  button {
-    font-family: 'Roboto', sans-serif;
-  }
+p,
+li,
+label,
+input,
+textarea,
+select,
+button {
+  font-family: 'Roboto', sans-serif;
+}
 
-  ul {
-    margin: 0;
-  }
+ul {
+  margin: 0;
+}
 
-  button {
-    outline: none;
-    background-color: transparent;
-    border: 2px solid transparent;
-    padding: $gtr-hlf $gtr;
-    border-radius: 23px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0 $gtr;
-    transition: color $tr-default, background-color $tr-default;
-    &:hover {
-      cursor: pointer;
-    }
+button {
+  outline: none;
+  background-color: transparent;
+  border: 2px solid transparent;
+  padding: $gtr-hlf $gtr;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 $gtr;
+  transition: color $tr-default, background-color $tr-default;
+  &:hover {
+    cursor: pointer;
   }
+}
+
+// Transitions
+.fade-enter-from,
+.fade-leave-to {
+   opacity: 0; 
+}
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity $tr-default;
+}
 
 // Theme styles
 .light {
