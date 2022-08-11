@@ -1,5 +1,8 @@
 <template>
     <main class="grid" :class="theme">
+        <Transition name="fade">
+            <div class="grid__loader" v-if="loading"></div>
+        </Transition>
         <div class="grid__container">
             <TransitionGroup name="fade">
                 <div class="grid__item" v-for="country of countries" :key="country.name.common" @click="emitShowModal(country.ccn3)">
@@ -15,7 +18,7 @@
 
 <script>
     export default {
-        props: ['theme', 'countries'],
+        props: ['theme', 'loading', 'countries'],
         methods: {
             emitShowModal(countryCCN3) {
                 this.$emit('showModal', countryCCN3)
@@ -35,6 +38,36 @@
     }
     &.dark {
         background-color: $c-cod-grey;
+    }
+    &__loader {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:before {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin: 0;
+            background: transparent;
+            border-top: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-radius: 50%;
+            transition: border-color;
+            animation: 1s spin linear infinite;
+            .light & {
+                border-top-color: $c-dodger-blue;
+            }
+            .dark & {
+                border-top-color: $c-ocean-green;
+            }
+        }
     }
     &__container {
         display: flex;
@@ -75,5 +108,14 @@
             margin: 0   ;
         }
     }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

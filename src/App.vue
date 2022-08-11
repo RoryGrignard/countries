@@ -1,7 +1,7 @@
 <template>
   <Header :theme="theme" :title="title" @toggle-theme="toggleTheme" />
   <Filter :theme="theme" @filter-region="region => filterRegion(region)" @search-query="searchQuery => searchCountry(searchQuery)" @reset-filters="resetFilters" />
-  <Grid :theme="theme" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
+  <Grid :theme="theme" :loading="loading" :countries="countries" @show-modal="countryCCN3 => showModal(countryCCN3)" />
   <Transition name="fade">
     <Modal :theme="theme" :country="country" v-if="modalActive" @hide-modal="hideModal" />
   </Transition>
@@ -98,6 +98,7 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 #app * {
