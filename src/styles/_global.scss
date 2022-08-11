@@ -24,7 +24,13 @@ $header-height-dbl: $header-height * 2;
 $header-height-tpl: $header-height * 3;
 
 // Transitions
-$tr-default: .4s ease;
+$tr-duration: .4s; 
+$tr-duration-hlf: $tr-duration / 2; 
+
+$tr-timing: ease; 
+
+$tr-default: $tr-duration $tr-timing;
+$tr-icon: $tr-duration $tr-timing;
 
 //Ratios
 $rat-16-9: 56.3% 0 0;
@@ -35,3 +41,4 @@ $box-shadow-dark: 0px 0px 10px 5px $c-pickled-bluewood-tr-6;
 $gtr: 20px;
 $gtr-hlf: $gtr / 2;
 $gtr-dbl: $gtr * 2;
+$icon-size: 15px;
