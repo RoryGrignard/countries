@@ -40,11 +40,10 @@
         }
         &__loader {
             position: absolute;
-            top: 0;
+            top: 50vh;
             right: 0;
-            bottom: 0;
             left: 0;
-            margin: auto;
+            margin: -40px auto 0;
             display: flex;
             align-items: center;
             justify-content: center;
