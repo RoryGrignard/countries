@@ -93,9 +93,9 @@
         &__toggle {
             position: relative;
             width: 88px;
-            height: 36px;
+            height: 38px;
             overflow: hidden;
-            border-radius: 18px;
+            border-radius: 20px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: border-color $tr-default, opacity $tr-default;
@@ -110,10 +110,10 @@
             }
             &-knob {
                 position: relative;
-                left: 5px;
-                top: 5px;
-                width: 23px;
-                height: 23px;
+                left: 3px;
+                top: 2px;
+                width: 30px;
+                height: 30px;
                 border-radius: 50%;
                 transition: transform $tr-icon, background-color $tr-icon;
                 .light & {
@@ -127,15 +127,15 @@
                 }
                 .dark & {
                     background-color: $c-ocean-green;
-                    transform: translateX(34px);
+                    transform: translateX(27px);
                     .icon.--sun {
                         opacity: 0;
                     }
                     .icon.--moon {
-                        transition-delay: $tr-duration;
+                        transition-delay: $tr-duration-hlf;
                     }
                     @media (min-width: 576px) {
-                        transform: translateX(50px);
+                        transform: translateX(48px);
                     }
                 }
                 .icon {
@@ -148,6 +148,7 @@
                     transition: opacity $tr-default;
                     &.--sun {
                         fill: $c-white;
+                        margin: 7px 0 0 7px;
                     }
                     &.--moon {
                         fill: $c-cod-grey;
