@@ -30,7 +30,7 @@ $tr-duration-hlf: $tr-duration / 2;
 $tr-timing: ease; 
 
 $tr-default: $tr-duration $tr-timing;
-$tr-icon: $tr-duration $tr-timing;
+$tr-icon: $tr-duration-hlf $tr-timing;
 
 //Ratios
 $rat-16-9: 56.3% 0 0;

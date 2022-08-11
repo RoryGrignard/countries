@@ -36,6 +36,7 @@ export default {
     showModal(countryCCN3) {
       let selectedCountry = this.countries.filter(country => country.ccn3 == countryCCN3)
       this.country = selectedCountry
+      this.filterVisible = false
       this.modalActive = true
     },
     hideModal() {
@@ -43,6 +44,7 @@ export default {
       this.country = {}
     },
     toggleFilter() {
+      this.modalActive = false
       this.filterVisible = !this.filterVisible
     },
     toggleTheme() {
@@ -101,85 +103,36 @@ export default {
 </script>
 
 <style lang="scss">
-// Layout
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
 
-#app * {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  &::-webkit-scrollbar {
-    display: none;
+  // Layout
+  #app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 
-*[class*="__container"]:not(.modal__container) {
-  width: 100%;
-  max-width: 1400px;
-  padding: 0 $gtr;
-  margin: 0 auto;
-}
+  #app * {
+    box-sizing: border-box;
+  }
 
-// Typography
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-li,
-label,
-input,
-textarea,
-select,
-button {
-  transition: color $tr-default;
-}
+  body {
+    margin: 0;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin-top: 0;
-}
+  *[class*="__container"]:not(.modal__container) {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 $gtr;
+    margin: 0 auto;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Roboto Slab', serif;
-}
-
-p,
-li,
-label,
-input,
-textarea,
-select,
-button {
-  font-family: 'Roboto', sans-serif;
-}
-
-ul {
-  margin: 0;
-}
-
-.light {
+  // Typography
   h1,
   h2,
   h3,
@@ -187,94 +140,144 @@ ul {
   h5,
   h6,
   p,
-  li {
-    color: $c-cod-grey;
+  li,
+  label,
+  input,
+  textarea,
+  select,
+  button {
+    transition: color $tr-default;
   }
-}
 
-.dark {
   h1,
   h2,
   h3,
   h4,
   h5,
   h6,
+  p {
+    margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Roboto Slab', serif;
+  }
+
   p,
-  li {
-    color: $c-white;
+  li,
+  label,
+  input,
+  textarea,
+  select,
+  button {
+    font-family: 'Roboto', sans-serif;
   }
-}
 
-// Buttons
-button {
-  outline: none;
-  background-color: transparent;
-  border: 2px solid transparent;
-  padding: 8.5px 10px;
-  border-radius: 23px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0 $gtr-hlf;
-  transition: opacity $tr-default, border-color $tr-default, color $tr-default;
-  &:hover {
-    cursor: pointer;
-    opacity: .6;
+  ul {
+    margin: 0;
   }
-  &:focus {
+
+  .light {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li {
+      color: $c-cod-grey;
+    }
+  }
+
+  .dark {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li {
+      color: $c-white;
+    }
+  }
+
+  // Buttons
+  button {
     outline: none;
-  }
-  .light & {
-    color: $c-dodger-blue;
-    border-color: $c-dodger-blue;
-  }
-  .dark & {
-    color: $c-ocean-green;
-    border-color: $c-ocean-green;
-  }
-  @media (min-width: 576px) {
-    padding: 8.5px 15px;
-  }
-}
-
-//Icons
-.icon {
-  width: $icon-size;
-  height: $icon-size;
-  transition: fill $tr-default;
-  .light & {
-    fill: $c-dodger-blue;
-  }
-  .dark & {
-    fill: $c-ocean-green;
-  }
-}
-
-// Forms
-input,
-select {
-  &:focus-visible {
-    outline: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 8.5px 10px;
+    border-radius: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 $gtr-hlf;
+    transition: opacity $tr-default, border-color $tr-default, color $tr-default;
+    &:hover {
+      cursor: pointer;
+      opacity: .6;
+    }
+    &:focus {
+      outline: none;
+    }
     .light & {
-    box-shadow: $box-shadow-light;
+      color: $c-dodger-blue;
+      border-color: $c-dodger-blue;
     }
     .dark & {
-    box-shadow: $box-shadow-dark;
+      color: $c-ocean-green;
+      border-color: $c-ocean-green;
+    }
+    @media (min-width: 576px) {
+      padding: 8.5px 15px;
     }
   }
-}
 
-// Transitions
-.fade-enter-from,
-.fade-leave-to {
-   opacity: 0; 
-}
-.fade-enter-to,
-.fade-leave-from {
-    opacity: 1;
-}
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity $tr-default;
-}
+  //Icons
+  .icon {
+    width: $icon-size;
+    height: $icon-size;
+    transition: fill $tr-default;
+    .light & {
+      fill: $c-dodger-blue;
+    }
+    .dark & {
+      fill: $c-ocean-green;
+    }
+  }
+
+  // Forms
+  input,
+  select {
+    &:focus-visible {
+      outline: none;
+      .light & {
+      box-shadow: $box-shadow-light;
+      }
+      .dark & {
+      box-shadow: $box-shadow-dark;
+      }
+    }
+  }
+
+  // Transitions
+  .fade-enter-from,
+  .fade-leave-to {
+     opacity: 0; 
+  }
+  .fade-enter-to,
+  .fade-leave-from {
+      opacity: 1;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+      transition: opacity $tr-default;
+  }
 </style>
