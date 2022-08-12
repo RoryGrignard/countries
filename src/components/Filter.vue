@@ -80,7 +80,7 @@
             padding: 7px 0;
             transform: translateY(-47px);
             &.--filtered {
-                transform: translateY(-47px);
+                transform: translateY(-48px);
             }
             &.--visible {
                 transform: translateY(0);
