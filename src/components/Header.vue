@@ -92,13 +92,16 @@
         }
         &__toggle {
             position: relative;
-            width: 88px;
+            width: 68px;
             height: 38px;
             overflow: hidden;
             border-radius: 20px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: border-color $tr-default, opacity $tr-default;
+            @media (min-width: 576px) {
+                width: 88px;
+            }
             &:hover {
                 opacity: .6;
             }
@@ -145,6 +148,8 @@
                     bottom: 0;
                     left: 0;
                     margin: auto;
+                    width: 16px;
+                    height: 16px;
                     transition: opacity $tr-default;
                     &.--sun {
                         fill: $c-white;
